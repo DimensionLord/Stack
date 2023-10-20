@@ -14,7 +14,7 @@ public class StackDemo {
 //        stack.push(new ArithmeticException());
         stack.push("носки");
 
-        MyStack<Integer> i = new MyStack<>();
+        MyStack<Integer> iStack = new MyStack<>();
 //        System.out.println(stack.pop());
 //        System.out.println(stack.pop());
 //        System.out.println(stack.pop());
