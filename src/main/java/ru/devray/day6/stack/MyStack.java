@@ -1,23 +1,38 @@
 package ru.devray.day6.stack;
 
+import ru.devray.day6.A;
+
+import java.util.Arrays;
+
+/**
+ * Дженерик это концепция, которая позволяет в классе объявить о том, что мы создаем стек каких-то объектов (мы пока еще не знаем каких).
+ * А при создании инстанса уточнить тип объектов, которые мы будем класть в стек.
+ * @param <T> указывает на наиболее абстрактный (широкий) тип объектов, которые могут храниться в стеке.
+ */
 public class MyStack<T> {
 
-    T[] elements = (T[]) new Object[10]; //{e,null,null,null}
-    int index = -1;
+    private T[] elements = (T[]) new Object[10];
+    private int index;
 
 
-    //класть
     public void push(T element) {
-        index++;
-        elements[index] = element;
+        if (index == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 2);
+        }
+        elements[index++] = element;
     }
 
-    //брать
     public T pop() {
-        T element = elements[index];
+        if (index == -1) {
+            return null;
+        }
+        T element = elements[--index];
         elements[index] = null;
-        index--;
         return element;
     }
 
+    @Override
+    public String toString() {
+        return Arrays.toString(elements);
+    }
 }
